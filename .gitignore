@@ -1,0 +1,70 @@
+# Build directories
+build/
+build-*/
+aeris-build/
+cmake-build-*/
+
+# CMake artifacts
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# Conan
+.conan/
+.conan2/
+conan.lock
+conanbuild/
+conaninfo.txt
+conanbuildinfo.*
+conan_toolchain.cmake
+graph_info.json
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# pybind / compiled extensions
+*.so
+*.dylib
+*.dll
+*.pyd
+
+# clang tooling
+.clangd/
+.cache/
+*.plist
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs / temp
+*.log
+*.tmp
+
+# Coverage / profiling
+*.gcda
+*.gcno
+*.profraw
+*.profdata
+coverage/
+
+# Bench output
+bench/results/
+
+# Local config (never commit)
+.env
+.env.local
+
+# Replay output (inputs stay tracked)
+replay/*.out
+replay/*.result

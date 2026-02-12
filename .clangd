@@ -1,0 +1,24 @@
+CompileFlags:
+  CompilationDatabase: ../aeris-build
+  Add:
+    - -Wall
+    - -Wextra
+    - -Wpedantic
+
+Diagnostics:
+  UnusedIncludes: Strict
+  MissingIncludes: Strict
+  ClangTidy:
+    Add:
+      - bugprone-*
+      - clang-analyzer-*
+      - modernize-*
+      - performance-*
+    Remove:
+      - modernize-use-trailing-return-type
+
+Index:
+  Background: Build
+
+InlayHints:
+  Enabled: true

@@ -1,0 +1,41 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 25,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "dev",
+      "displayName": "Development",
+      "description": "Debug build with compile commands for clangd.",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "AERIS_ENABLE_CLANG_TOOL_TARGETS": "ON"
+      }
+    },
+    {
+      "name": "tidy",
+      "inherits": "dev",
+      "displayName": "Development + clang-tidy",
+      "description": "Enable compile-time clang-tidy checks for C++ targets.",
+      "cacheVariables": {
+        "AERIS_ENABLE_CLANG_TIDY": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "dev",
+      "configurePreset": "dev"
+    },
+    {
+      "name": "tidy",
+      "configurePreset": "tidy"
+    }
+  ]
+}
