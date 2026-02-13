@@ -1,7 +1,7 @@
 from conan import ConanFile
 
 class EngineRecipe(ConanFile):
-    name = "aeris"
+    name = "aeri"
     version = "0.1"
 
     settings = "os", "compiler", "build_type", "arch"

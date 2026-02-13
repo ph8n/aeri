@@ -1,10 +1,10 @@
-option(AERIS_ENABLE_CLANG_TIDY "Enable clang-tidy while compiling C++ targets." OFF)
-option(AERIS_ENABLE_CLANG_TOOL_TARGETS "Enable clang-format and clang-tidy helper targets." ON)
+option(AERI_ENABLE_CLANG_TIDY "Enable clang-tidy while compiling C++ targets." OFF)
+option(AERI_ENABLE_CLANG_TOOL_TARGETS "Enable clang-format and clang-tidy helper targets." ON)
 
 find_program(CLANG_FORMAT_BIN NAMES clang-format)
 find_program(CLANG_TIDY_BIN NAMES clang-tidy)
 
-if(AERIS_ENABLE_CLANG_TIDY)
+if(AERI_ENABLE_CLANG_TIDY)
     if(CLANG_TIDY_BIN)
         set(CMAKE_CXX_CLANG_TIDY
             "${CLANG_TIDY_BIN}"
@@ -12,12 +12,12 @@ if(AERIS_ENABLE_CLANG_TIDY)
         )
         message(STATUS "clang-tidy enabled: ${CLANG_TIDY_BIN}")
     else()
-        message(WARNING "AERIS_ENABLE_CLANG_TIDY is ON, but clang-tidy was not found in PATH.")
+        message(WARNING "AERI_ENABLE_CLANG_TIDY is ON, but clang-tidy was not found in PATH.")
     endif()
 endif()
 
-if(AERIS_ENABLE_CLANG_TOOL_TARGETS)
-    set(AERIS_SOURCE_DIRS
+if(AERI_ENABLE_CLANG_TOOL_TARGETS)
+    set(AERI_SOURCE_DIRS
         "${CMAKE_SOURCE_DIR}/rt"
         "${CMAKE_SOURCE_DIR}/core"
         "${CMAKE_SOURCE_DIR}/indicators"
@@ -32,9 +32,9 @@ if(AERIS_ENABLE_CLANG_TOOL_TARGETS)
         "${CMAKE_SOURCE_DIR}/bench"
     )
 
-    set(AERIS_FORMAT_FILES)
-    set(AERIS_TIDY_FILES)
-    foreach(dir IN LISTS AERIS_SOURCE_DIRS)
+    set(AERI_FORMAT_FILES)
+    set(AERI_TIDY_FILES)
+    foreach(dir IN LISTS AERI_SOURCE_DIRS)
         if(EXISTS "${dir}")
             file(
                 GLOB_RECURSE DIR_FORMAT_FILES CONFIGURE_DEPENDS
@@ -54,19 +54,19 @@ if(AERIS_ENABLE_CLANG_TOOL_TARGETS)
                 "${dir}/*.cpp"
                 "${dir}/*.cxx"
             )
-            list(APPEND AERIS_FORMAT_FILES ${DIR_FORMAT_FILES})
-            list(APPEND AERIS_TIDY_FILES ${DIR_TIDY_FILES})
+            list(APPEND AERI_FORMAT_FILES ${DIR_FORMAT_FILES})
+            list(APPEND AERI_TIDY_FILES ${DIR_TIDY_FILES})
         endif()
     endforeach()
 
-    list(REMOVE_DUPLICATES AERIS_FORMAT_FILES)
-    list(REMOVE_DUPLICATES AERIS_TIDY_FILES)
+    list(REMOVE_DUPLICATES AERI_FORMAT_FILES)
+    list(REMOVE_DUPLICATES AERI_TIDY_FILES)
 
     if(CLANG_FORMAT_BIN)
-        if(AERIS_FORMAT_FILES)
+        if(AERI_FORMAT_FILES)
             add_custom_target(
                 clang-format
-                COMMAND "${CLANG_FORMAT_BIN}" -i ${AERIS_FORMAT_FILES}
+                COMMAND "${CLANG_FORMAT_BIN}" -i ${AERI_FORMAT_FILES}
                 WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
                 COMMENT "Formatting C/C++ sources with clang-format"
                 VERBATIM
@@ -82,14 +82,14 @@ if(AERIS_ENABLE_CLANG_TOOL_TARGETS)
     endif()
 
     if(CLANG_TIDY_BIN)
-        if(AERIS_TIDY_FILES)
+        if(AERI_TIDY_FILES)
             add_custom_target(
                 clang-tidy
                 COMMAND
                     "${CLANG_TIDY_BIN}"
                     --config-file=${CMAKE_SOURCE_DIR}/.clang-tidy
                     -p "${CMAKE_BINARY_DIR}"
-                    ${AERIS_TIDY_FILES}
+                    ${AERI_TIDY_FILES}
                 WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
                 COMMENT "Running clang-tidy over translation units"
                 VERBATIM

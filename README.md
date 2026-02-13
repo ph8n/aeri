@@ -1,21 +1,13 @@
-# AERIS
+# AERI
 
 ## C++ Tooling Setup (clangd, clang-format, clang-tidy)
 
 ### 1) Install toolchain
 
-macOS (Homebrew):
-
-```bash
-brew install llvm cmake ninja conan
-```
-
-Ubuntu/Debian:
-
-```bash
-sudo apt update
-sudo apt install -y clangd clang-format clang-tidy cmake ninja-build conan
-```
+ - llvm 
+ - cmake
+ - ninja 
+ - conan
 
 ### 2) Configure the project
 
@@ -23,7 +15,7 @@ sudo apt install -y clangd clang-format clang-tidy cmake ninja-build conan
 cmake --preset dev
 ```
 
-This generates `build/compile_commands.json`, and `.clangd` is configured to use that path.
+This configures an out-of-tree build in `../aeri-build` (derived from the repo name via presets) and writes `compile_commands.json` there. The repo-root `compile_commands.json` symlink points to that file for clangd.
 
 ### 3) Build
 
@@ -50,4 +42,4 @@ cmake --preset tidy
 cmake --build --preset tidy
 ```
 
-That uses `AERIS_ENABLE_CLANG_TIDY=ON` so CMake runs clang-tidy during target builds.
+That uses `AERI_ENABLE_CLANG_TIDY=ON` so CMake runs clang-tidy during target builds.

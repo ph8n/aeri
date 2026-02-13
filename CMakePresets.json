@@ -11,11 +11,12 @@
       "displayName": "Development",
       "description": "Debug build with compile commands for clangd.",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceParentDir}/${sourceDirName}-build",
+      "toolchainFile": "${sourceParentDir}/${sourceDirName}-build/conan_toolchain.cmake",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
-        "AERIS_ENABLE_CLANG_TOOL_TARGETS": "ON"
+        "AERI_ENABLE_CLANG_TOOL_TARGETS": "ON"
       }
     },
     {
@@ -24,7 +25,7 @@
       "displayName": "Development + clang-tidy",
       "description": "Enable compile-time clang-tidy checks for C++ targets.",
       "cacheVariables": {
-        "AERIS_ENABLE_CLANG_TIDY": "ON"
+        "AERI_ENABLE_CLANG_TIDY": "ON"
       }
     }
   ],

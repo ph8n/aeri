@@ -1,7 +1,7 @@
 # Build directories
 build/
 build-*/
-aeris-build/
+aeri-build/
 cmake-build-*/
 
 # CMake artifacts

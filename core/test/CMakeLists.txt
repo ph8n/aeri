@@ -5,7 +5,7 @@ add_executable(core_tests
 )
 
 target_link_libraries(core_tests
-  aeris_core
+  aeri_core
   GTest::gtest_main
 )
 
